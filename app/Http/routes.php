@@ -12,9 +12,24 @@
 */
 
 Route::get('/', function () {
-    return view('/blog');
+    return redirect('/blog');
 });
 
 Route::get('blog', 'BlogController@index');
 
 Route::get('blog/{slug}', 'BlogController@showPost');
+
+Route::get('admin', function(){
+	return redirect('/admin/post');
+});
+
+Route::group(['namespace'=>'Admin'], function(){
+	resource('admin/post', 'PostController');
+	resource('admin/tag', 'TagController');
+	Route::get('admin/upload', 'UploadController@index');
+});
+
+// Logging in and out
+// Route::get('/auth/login', 'Auth\AuthController@getLogin');
+// Route::post('/auth/login', 'Auth\AuthController@postLogin');
+// Route::get('/auth/logout', 'Auth\AuthController@getLogout');
