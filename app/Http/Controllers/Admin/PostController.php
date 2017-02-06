@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        echo 'index';
+        return view('admin.post.index');
     }
 
     /**
